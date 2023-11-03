@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - FDFullscreenPopGesture (1.1)
   - GPUImage (0.1.7)
   - Masonry (1.1.0)
   - MJRefresh (3.4.3)
@@ -21,14 +22,17 @@ PODS:
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
   - TZImagePickerController (2.1.9)
+  - VIMediaCache (1.0.0)
 
 DEPENDENCIES:
   - AFNetworking
+  - FDFullscreenPopGesture
   - GPUImage
   - Masonry
   - MJRefresh
   - SDWebImage
   - TZImagePickerController (~> 2.1.6)
+  - VIMediaCache (from `https://github.com/Mrxu2/VIMediaCache.git`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -38,15 +42,28 @@ SPEC REPOS:
     - MJRefresh
     - SDWebImage
     - TZImagePickerController
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - FDFullscreenPopGesture
+
+EXTERNAL SOURCES:
+  VIMediaCache:
+    :git: https://github.com/Mrxu2/VIMediaCache.git
+
+CHECKOUT OPTIONS:
+  VIMediaCache:
+    :commit: bf3b84cc8234b7f05bba7dc584352b74b2a212df
+    :git: https://github.com/Mrxu2/VIMediaCache.git
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AFNetworking: cb604b1c2bded0871f5f61f5d53653739e841d6b
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   TZImagePickerController: 6c9721783063edafc9ad42cd95acc82f1b648485
+  VIMediaCache: b190924334be3ae22f965c4c904a8b755c07ebab
 
-PODFILE CHECKSUM: 230106280bbf77204dfab38c4d8f4b65d9851ac5
+PODFILE CHECKSUM: 97a020006ee35310cb2cb24832133a59a29a526b
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.13.0

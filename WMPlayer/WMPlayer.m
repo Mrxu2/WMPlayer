@@ -13,6 +13,8 @@
 
 
 #import "WMPlayer.h"
+#import <VIMediaCache/VIMediaCache.h>
+
 //****************************宏*********************************
 #define WMPlayerSrcName(file) [@"WMPlayer.bundle" stringByAppendingPathComponent:file]
 #define WMPlayerFrameworkSrcName(file) [@"Frameworks/WMPlayer.framework/WMPlayer.bundle" stringByAppendingPathComponent:file]
@@ -95,6 +97,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 @property (nonatomic, copy) NSString   *videoGravity;
 @property (nonatomic,strong) UIView *airPlayView;
 
+@property (nonatomic, strong) VIResourceLoaderManager *resourceLoaderManager;
 
 @end
 
@@ -762,8 +765,13 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     if(self.currentItem){
         self.player = [AVPlayer playerWithPlayerItem:self.currentItem];
     }else{
-        self.urlAsset = [AVURLAsset assetWithURL:self.videoURL];
-        self.currentItem = [AVPlayerItem playerItemWithAsset:self.urlAsset];
+        
+        self.resourceLoaderManager = [VIResourceLoaderManager new];
+        self.urlAsset = [_resourceLoaderManager URLAssetWithURL:self.videoURL];
+        self.currentItem = [_resourceLoaderManager playerItemWithURLAsset:self.urlAsset];
+    
+//        self.urlAsset = [AVURLAsset assetWithURL:self.videoURL];
+//        self.currentItem = [AVPlayerItem playerItemWithAsset:self.urlAsset];
         self.player = [AVPlayer playerWithPlayerItem:self.currentItem];
     }
     if(self.loopPlay){
@@ -1367,6 +1375,9 @@ NSString * calculateTimeWithTimeFormatter(long long timeSecond){
 }
 -(void)dealloc{
     NSLog(@"WMPlayer dealloc");
+    [VICacheManager cleanCacheWithMaxCache:self.playerModel.maxCache Error:nil];
+    [self.resourceLoaderManager cancelLoaders];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.player.currentItem cancelPendingSeeks];
     [self.player.currentItem.asset cancelLoading];
