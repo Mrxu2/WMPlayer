@@ -26,5 +26,6 @@
 
 // 最大缓存容量
 @property(nonatomic,assign)unsigned long long maxCache;
+@property(nonatomic,assign)BOOL isCache;
 
 @end

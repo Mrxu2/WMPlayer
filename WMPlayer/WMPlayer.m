@@ -765,13 +765,15 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     if(self.currentItem){
         self.player = [AVPlayer playerWithPlayerItem:self.currentItem];
     }else{
-        
-        self.resourceLoaderManager = [VIResourceLoaderManager new];
-        self.urlAsset = [_resourceLoaderManager URLAssetWithURL:self.videoURL];
-        self.currentItem = [_resourceLoaderManager playerItemWithURLAsset:self.urlAsset];
+        if(self.playerModel.isCache){
+            self.resourceLoaderManager = [VIResourceLoaderManager new];
+            self.urlAsset = [_resourceLoaderManager URLAssetWithURL:self.videoURL];
+            self.currentItem = [_resourceLoaderManager playerItemWithURLAsset:self.urlAsset];
+        }else{
+                self.urlAsset = [AVURLAsset assetWithURL:self.videoURL];
+                self.currentItem = [AVPlayerItem playerItemWithAsset:self.urlAsset];
+        }
     
-//        self.urlAsset = [AVURLAsset assetWithURL:self.videoURL];
-//        self.currentItem = [AVPlayerItem playerItemWithAsset:self.urlAsset];
         self.player = [AVPlayer playerWithPlayerItem:self.currentItem];
     }
     if(self.loopPlay){
@@ -1375,9 +1377,10 @@ NSString * calculateTimeWithTimeFormatter(long long timeSecond){
 }
 -(void)dealloc{
     NSLog(@"WMPlayer dealloc");
-    [VICacheManager cleanCacheWithMaxCache:self.playerModel.maxCache Error:nil];
-    [self.resourceLoaderManager cancelLoaders];
-    
+    if(self.playerModel.isCache){
+        [VICacheManager cleanCacheWithMaxCache:self.playerModel.maxCache Error:nil];
+        [self.resourceLoaderManager cancelLoaders];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.player.currentItem cancelPendingSeeks];
     [self.player.currentItem.asset cancelLoading];
