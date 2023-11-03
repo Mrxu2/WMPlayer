@@ -11,5 +11,7 @@ s.source_files  = 'WMPlayer/**/*.{h,m}'
 s.resources     = 'WMPlayer/WMPlayer.bundle'
 s.framework     = 'Foundation','UIKit','MediaPlayer','AVFoundation'
 s.dependency    'Masonry'
+s.dependency 'VIMediaCache', 'https://github.com/Mrxu2/VIMediaCache.git' // pod三方库
+
 s.requires_arc  = true
 end
