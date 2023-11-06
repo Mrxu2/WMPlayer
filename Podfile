@@ -18,6 +18,7 @@ target 'PlayerDemo' do
     pod 'SDWebImage'
     pod 'TZImagePickerController', '~> 2.1.6'
     pod 'VIMediaCache', :git => 'https://github.com/Mrxu2/VIMediaCache.git'
+    pod 'KTVHTTPCache',:git => 'https://github.com/Mrxu2/KTVHTTPCache.git'
 
 end
 

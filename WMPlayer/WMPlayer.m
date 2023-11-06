@@ -765,7 +765,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     if(self.currentItem){
         self.player = [AVPlayer playerWithPlayerItem:self.currentItem];
     }else{
-        if(self.playerModel.isCache){
+        if(self.playerModel.openCache){
             self.resourceLoaderManager = [VIResourceLoaderManager new];
             self.urlAsset = [_resourceLoaderManager URLAssetWithURL:self.videoURL];
             self.currentItem = [_resourceLoaderManager playerItemWithURLAsset:self.urlAsset];
@@ -1377,7 +1377,7 @@ NSString * calculateTimeWithTimeFormatter(long long timeSecond){
 }
 -(void)dealloc{
     NSLog(@"WMPlayer dealloc");
-    if(self.playerModel.isCache){
+    if(self.playerModel.openCache){
         [VICacheManager cleanCacheWithMaxCache:self.playerModel.maxCache Error:nil];
         [self.resourceLoaderManager cancelLoaders];
     }

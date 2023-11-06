@@ -22,4 +22,17 @@ static unsigned long long defaultCache = 512 *1024 *1024;
     }
     return _maxCache;
 }
+-(BOOL)openCache{
+    if (!_openCache) {
+        _openCache = NO;
+    }
+    //.m3u8文件暂不缓存.
+    if(_videoURL && _videoURL.path && _videoURL.path.length > 0){
+        NSArray *paths = [_videoURL.path componentsSeparatedByString:@".m3u"];
+        if(paths.count > 1){
+            return NO;
+        }
+    }
+    return _openCache;
+}
 @end

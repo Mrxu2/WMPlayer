@@ -26,6 +26,7 @@
 
 // 最大缓存容量
 @property(nonatomic,assign)unsigned long long maxCache;
-@property(nonatomic,assign)BOOL isCache;
+// 开启缓存 (暂不支持.m3u8视频缓存)
+@property(nonatomic,assign)BOOL openCache;
 
 @end
