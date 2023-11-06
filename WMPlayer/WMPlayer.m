@@ -1346,6 +1346,12 @@ NSString * calculateTimeWithTimeFormatter(long long timeSecond){
 }
 //重置播放器
 -(void )resetWMPlayer{
+    
+    if(self.playerModel.openCache){
+        [VICacheManager cleanCacheWithMaxCache:self.playerModel.maxCache Error:nil];
+        [self.resourceLoaderManager cancelLoaders];
+    }
+    
     self.currentItem = nil;
     self.isInitPlayer = NO;
     self.bottomProgress.progress = 0;
