@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-#import "WMPlayer.h"
+//#import "WMPlayer.h"
+#import "XMediaPlayer.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VCRotateViewController : BaseViewController

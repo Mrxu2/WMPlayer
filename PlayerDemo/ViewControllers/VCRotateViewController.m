@@ -8,13 +8,13 @@
 
 #import "VCRotateViewController.h"
 
-@interface VCRotateViewController ()<WMPlayerDelegate>
-@property (nonatomic, strong)WMPlayer  *wmPlayer;
+@interface VCRotateViewController ()<XMediaPlayerDelegate>
+@property (nonatomic, strong)XMediaPlayer  *wmPlayer;
 @end
 
 @implementation VCRotateViewController
 - (BOOL)shouldAutorotate{
-    if (self.wmPlayer.playerModel.verticalVideo||self.wmPlayer.isLockScreen) {
+    if (self.wmPlayer.playerModel.verticalVideo) {
            return NO;
        }
         return YES;
@@ -45,26 +45,25 @@
     WMPlayerModel *playerModel = [WMPlayerModel new];
     playerModel.title = @"这是视频标题";
     playerModel.videoURL = [NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"];
-
-    self.wmPlayer = [[WMPlayer alloc] initWithFrame:CGRectMake(0, [WMPlayer IsiPhoneX]?34:0, self.view.frame.size.width, self.view.frame.size.width*(9.0/16))];
+    playerModel.videoURL = [NSURL URLWithString:@"https://www.apple.com/105/media/cn/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/bruce/mac-bruce-tpl-cn-2018_1280x720h.mp4"];
+    
+    self.wmPlayer = [[XMediaPlayer alloc] initWithFrame:CGRectMake(0, 34, self.view.frame.size.width, self.view.frame.size.width*(9.0/16))];
     self.wmPlayer.delegate = self;
     self.wmPlayer.playerModel =playerModel;
     [self.view addSubview:self.wmPlayer];
     [self.wmPlayer play];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
+    [self.wmPlayer addGestureRecognizer:tap];
 }
-///播放器事件
--(void)wmplayer:(WMPlayer *)wmplayer clickedCloseButton:(UIButton *)closeBtn{
-    if (wmplayer.isFullscreen) {
-        [self.wmPlayer setIsFullscreen:NO];
-        [self changeInterfaceOrientation:UIInterfaceOrientationPortrait];
+-(void)tapClick{
+    if (self.wmPlayer.playerStatus == XMediaPlayerStatusStopped) {
+        [self.wmPlayer play];
+
+    }else if(self.wmPlayer.playerStatus == XMediaPlayerStatusPlaying){
+        [self.wmPlayer pause];
     }else{
-        if (self.presentingViewController) {
-            [self dismissViewControllerAnimated:YES completion:^{
-                
-            }];
-        }else{
-            [self.navigationController popViewControllerAnimated:YES];
-        }
+        [self.wmPlayer pause];
     }
 }
 - (void)changeInterfaceOrientation:(UIInterfaceOrientation)ori {
@@ -130,46 +129,10 @@
             
         }
 }
-///全屏按钮
--(void)wmplayer:(WMPlayer *)wmplayer clickedFullScreenButton:(UIButton *)fullScreenBtn{
-    if (self.wmPlayer.isFullscreen) {//全屏-->非全屏
-        [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
-    }else{//非全屏-->全屏
-        [self.wmPlayer setIsFullscreen:YES];
-        [self changeInterfaceOrientation:UIInterfaceOrientationLandscapeRight];
-    }
-    [UIViewController attemptRotationToDeviceOrientation];
-}
 //旋转屏幕通知方法
 - (void)onDeviceOrientationChange:(NSNotification *)notification{
-    if (self.wmPlayer.isLockScreen){
-        return;
-    }
-    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
-    UIInterfaceOrientation interfaceOrientation = (UIInterfaceOrientation)orientation;
-    switch (interfaceOrientation) {
-        case UIInterfaceOrientationPortraitUpsideDown:{
-            NSLog(@"第3个旋转方向---电池栏在下");
-        }
-            break;
-        case UIInterfaceOrientationPortrait:{
-            NSLog(@"第0个旋转方向---电池栏在上");
-            [self.wmPlayer setIsFullscreen:NO];
-        }
-            break;
-        case UIInterfaceOrientationLandscapeLeft:{
-            NSLog(@"第2个旋转方向---电池栏在左");
-            [self.wmPlayer setIsFullscreen:YES];
-        }
-            break;
-        case UIInterfaceOrientationLandscapeRight:{
-            NSLog(@"第1个旋转方向---电池栏在右");
-            [self.wmPlayer setIsFullscreen:YES];
-        }
-            break;
-        default:
-            break;
-    }
+    
+   
 }
 - (void)dealloc{
     [self.wmPlayer pause];

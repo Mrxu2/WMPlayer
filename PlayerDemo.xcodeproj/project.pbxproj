@@ -42,6 +42,10 @@
 		C4EC7F441DF4FCD2006E9820 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4EC7F431DF4FCD2006E9820 /* AppDelegate.m */; };
 		C4EC7F4C1DF4FCD3006E9820 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4EC7F4B1DF4FCD3006E9820 /* Assets.xcassets */; };
 		C4EC7F4F1DF4FCD3006E9820 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4EC7F4D1DF4FCD3006E9820 /* LaunchScreen.storyboard */; };
+		CAD08B272AF9D1A400089170 /* WMPlayerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD08B262AF9D1A400089170 /* WMPlayerControl.m */; };
+		CAD08B2A2AF9E32000089170 /* XMediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD08B292AF9E32000089170 /* XMediaPlayer.m */; };
+		CAD08B2D2AFA0BD100089170 /* XMediaPlayer+State.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD08B2C2AFA0BD100089170 /* XMediaPlayer+State.m */; };
+		CAD08B302AFA0C0400089170 /* XMediaPlayer+Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD08B2F2AFA0C0400089170 /* XMediaPlayer+Observer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +110,14 @@
 		C4EC7F4B1DF4FCD3006E9820 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4EC7F4E1DF4FCD3006E9820 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C4EC7F501DF4FCD3006E9820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAD08B252AF9D1A400089170 /* WMPlayerControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMPlayerControl.h; sourceTree = "<group>"; };
+		CAD08B262AF9D1A400089170 /* WMPlayerControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMPlayerControl.m; sourceTree = "<group>"; };
+		CAD08B282AF9E32000089170 /* XMediaPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMediaPlayer.h; sourceTree = "<group>"; };
+		CAD08B292AF9E32000089170 /* XMediaPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMediaPlayer.m; sourceTree = "<group>"; };
+		CAD08B2B2AFA0BD100089170 /* XMediaPlayer+State.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMediaPlayer+State.h"; sourceTree = "<group>"; };
+		CAD08B2C2AFA0BD100089170 /* XMediaPlayer+State.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XMediaPlayer+State.m"; sourceTree = "<group>"; };
+		CAD08B2E2AFA0C0400089170 /* XMediaPlayer+Observer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMediaPlayer+Observer.h"; sourceTree = "<group>"; };
+		CAD08B2F2AFA0C0400089170 /* XMediaPlayer+Observer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XMediaPlayer+Observer.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +146,8 @@
 				70763CC920CD5C9700DCB7BE /* WMPlayerModel.m */,
 				70763CCE20CD5C9700DCB7BE /* WMPlayer.h */,
 				70763CD220CD5C9700DCB7BE /* WMPlayer.m */,
+				CAD08B252AF9D1A400089170 /* WMPlayerControl.h */,
+				CAD08B262AF9D1A400089170 /* WMPlayerControl.m */,
 				70763CC820CD5C9700DCB7BE /* WMLightView.h */,
 				70763CD020CD5C9700DCB7BE /* WMLightView.m */,
 				70763CCA20CD5C9700DCB7BE /* FastForwardView.h */,
@@ -148,6 +162,12 @@
 				1885A1022475490900059B3E /* EnterFullScreenTransition.m */,
 				1885A1042475492E00059B3E /* ExitFullScreenTransition.h */,
 				1885A1052475492E00059B3E /* ExitFullScreenTransition.m */,
+				CAD08B282AF9E32000089170 /* XMediaPlayer.h */,
+				CAD08B292AF9E32000089170 /* XMediaPlayer.m */,
+				CAD08B2B2AFA0BD100089170 /* XMediaPlayer+State.h */,
+				CAD08B2C2AFA0BD100089170 /* XMediaPlayer+State.m */,
+				CAD08B2E2AFA0C0400089170 /* XMediaPlayer+Observer.h */,
+				CAD08B2F2AFA0C0400089170 /* XMediaPlayer+Observer.m */,
 			);
 			path = WMPlayer;
 			sourceTree = SOURCE_ROOT;
@@ -400,13 +420,17 @@
 				BF1624B11DF50011006209D1 /* TencentNewsViewController.m in Sources */,
 				BF1624AF1DF50011006209D1 /* SinaNewsViewController.m in Sources */,
 				70763CD920CD5C9700DCB7BE /* WMPlayer.m in Sources */,
+				CAD08B272AF9D1A400089170 /* WMPlayerControl.m in Sources */,
 				181BB50A2487FD73003C1FEE /* VCRotateViewController.m in Sources */,
+				CAD08B2D2AFA0BD100089170 /* XMediaPlayer+State.m in Sources */,
+				CAD08B302AFA0C0400089170 /* XMediaPlayer+Observer.m in Sources */,
 				18745D04211D3ADC0010E46F /* CameraViewController.m in Sources */,
 				C4EC7F441DF4FCD2006E9820 /* AppDelegate.m in Sources */,
 				BF1624AB1DF50011006209D1 /* BaseNavigationController.m in Sources */,
 				18745D07211D57020010E46F /* WMTabBar.m in Sources */,
 				70763CD420CD5C9700DCB7BE /* WMPlayerModel.m in Sources */,
 				1885A0F72472CF2200059B3E /* FullScreenHelperViewController.m in Sources */,
+				CAD08B2A2AF9E32000089170 /* XMediaPlayer.m in Sources */,
 				18B862FD248BFC2900795947 /* LandscapeRightViewController.m in Sources */,
 				C4EC7F411DF4FCD2006E9820 /* main.m in Sources */,
 			);
